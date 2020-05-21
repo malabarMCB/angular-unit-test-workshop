@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "workshop"
+    }
+  },
+  "defaultProject": "workshop",
+  "cli": {
+    "analytics": false
+  }
 }
