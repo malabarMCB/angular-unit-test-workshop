@@ -13,6 +13,6 @@ export class Service {
 
   getMessage(): Observable<string>{
     return this.http.request('GET', `${Service.url}/message`)
-      .pipe(map((x: any) => x.text));
+      .pipe(map((x: any) => x && x.text));
   }
 }

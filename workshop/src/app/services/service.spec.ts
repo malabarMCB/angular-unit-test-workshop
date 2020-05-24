@@ -12,24 +12,30 @@ describe('Service', () => {
     });
   });
 
+  const parameters = [
+    {description: 'should get not empty message from backend', expected: 'expected text', response: {text: 'expected text'}},
+    {description: 'should get empty message from backend', expected: null, response: null}
+    ];
+
   function mockResponse(backend: HttpTestingController, url: string, body: any) {
     const testRequest = backend.expectOne(url);
     testRequest.flush(body);
     return testRequest;
   }
 
-  it('should get message from backend', inject(
-    [Service, HttpTestingController],
-    fakeAsync((service, backend) => {
+  parameters.forEach((parameter) =>
+    it(parameter.description, inject(
+      [Service, HttpTestingController],
+      fakeAsync((service, backend) => {
 
-      const expectedMessage = 'expected text';
-      let actualMessage;
-      service.getMessage().subscribe(x => actualMessage = x);
-      mockResponse(backend, 'http://localhost:4545/message', {text: expectedMessage});
+        let actualMessage;
+        service.getMessage().subscribe(x => actualMessage = x);
+        mockResponse(backend, 'http://localhost:4545/message', parameter.response);
 
-      tick();
+        tick();
 
-      expect(actualMessage).toBe(expectedMessage);
-      backend.verify();
-    })));
+        expect(actualMessage).toBe(parameter.expected);
+        backend.verify();
+      })))
+  );
 });
