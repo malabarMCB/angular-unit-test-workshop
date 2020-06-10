@@ -10,3 +10,6 @@ Basic examples of unit testing in Angular
 ## Tests to explore
 * [Angular component testing](https://github.com/malabarMCB/angular-unit-test-workshop/blob/master/workshop/src/app/components/sut/sut.component.spec.ts)
 * [Service testing](https://github.com/malabarMCB/angular-unit-test-workshop/blob/master/workshop/src/app/services/service.spec.ts)
+
+## Misc
+* The project uses [Mountebank](http://www.mbtest.org/) mock server as a backend. Look at [mountebank-backend.json](https://github.com/malabarMCB/angular-unit-test-workshop/blob/master/mountebank-backend.json) to get more info about the mock server( it's pretty simple)
